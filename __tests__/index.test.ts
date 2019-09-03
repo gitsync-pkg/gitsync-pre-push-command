@@ -23,8 +23,8 @@ describe('pre-push command', () => {
     await source.commitFile('.gitsync.json', JSON.stringify({
       repos: [
         {
-          dir: 'package-name',
-          remote: target.dir,
+          paths: 'package-name',
+          repo: target.dir,
         }
       ]
     }));

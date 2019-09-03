@@ -1,8 +1,7 @@
-import {Arguments, CommandModule} from 'yargs';
+import {CommandModule} from 'yargs';
 import {Config} from '@gitsync/config';
-import git, {Git} from "ts-git";
+import git from "ts-git";
 import log from "@gitsync/log";
-import commit from '@gitsync/commit-command';
 
 let command: CommandModule = {
   handler: () => {
@@ -17,14 +16,19 @@ command.handler = async () => {
   const source = git('.');
   const config = new Config();
 
-  const result = await source.run(['diff', '--cached', '--name-only']);
-  log.info('Found changed files: \n' + result);
+  // TODO refined branch
+  const result = await source.run(['diff', '--cached', '--name-only', 'origin/' + await source.getBranch()]);
+  if (!result) {
+    log.info('No changed files found.');
+    return;
+  }
 
+  log.info('Found changed files: \n' + result);
   const files = result.split("\n");
-  const changedRepos = config.getReposFromFiles(files);
+  const changedRepos = config.getReposByFiles(files);
 
   for (const repoConfig of changedRepos) {
-    let dir = config.getRepoDir(repoConfig.remote);
+    let dir = config.getRepoDir(repoConfig.repo);
     let repo = git(dir);
     await repo.run(['push', '--all', 'origin']);
   }
