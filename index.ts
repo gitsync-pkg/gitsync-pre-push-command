@@ -28,7 +28,7 @@ command.handler = async () => {
   const changedRepos = config.getReposByFiles(files);
 
   for (const repoConfig of changedRepos) {
-    let dir = config.getRepoDir(repoConfig.repo);
+    let dir = config.getRepoDir(repoConfig.target);
     let repo = git(dir);
     await repo.run(['push', '--all', 'origin']);
   }
