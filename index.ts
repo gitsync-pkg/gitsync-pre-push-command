@@ -38,7 +38,7 @@ command.handler = async () => {
     }
 
     let repo = git(dir);
-    await repo.run(['push', '--all', 'origin']);
+    await repo.run(['push', '--all', '--follow-tags', 'origin']);
   }
 
   log.warn('Done!');
