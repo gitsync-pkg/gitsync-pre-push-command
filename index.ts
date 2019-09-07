@@ -3,7 +3,7 @@ import {Config} from '@gitsync/config';
 import git from "ts-git";
 import log from "@gitsync/log";
 import * as fs from 'fs';
-import theme from 'chalk-theme2';
+import theme from 'chalk-theme';
 
 let command: CommandModule = {
   handler: () => {
