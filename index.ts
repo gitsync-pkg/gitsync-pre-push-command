@@ -1,6 +1,6 @@
 import {CommandModule} from 'yargs';
 import {Config} from '@gitsync/config';
-import git from "ts-git";
+import git from "git-cli-wrapper";
 import log from "@gitsync/log";
 import * as fs from 'fs';
 import theme from 'chalk-theme';
