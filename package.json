@@ -38,5 +38,10 @@
     "jest": "^24.9.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
+  },
+  "ciDependencies": {
+    "@gitsync/sync": "gitsync-pkg/gitsync-sync#master",
+    "@gitsync/sync-command": "gitsync-pkg/gitsync-sync-command#master",
+    "@gitsync/test": "gitsync-pkg/gitsync-test#master"
   }
 }
