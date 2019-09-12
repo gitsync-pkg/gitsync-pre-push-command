@@ -30,14 +30,14 @@ command.handler = async () => {
   const changedRepos = config.getReposByFiles(files);
 
   for (const repoConfig of changedRepos) {
-    let dir = config.getRepoDir(repoConfig.target);
-    if (!fs.existsSync(dir)) {
-      log.warn(`Target repository directory "${theme.info(dir)}" does not exists, `
+    let repoDir = await config.getRepoDirByRepo(repoConfig);
+    if (!fs.existsSync(repoDir)) {
+      log.warn(`Target repository directory "${theme.info(repoDir)}" does not exists, `
         + `you may try "${theme.info(`gitsync commit ${repoConfig.sourceDir}`)}" to sync commit before push.`);
       continue;
     }
 
-    let repo = git(dir);
+    let repo = git(repoDir);
     await repo.run(['push', '--all', '--follow-tags', 'origin']);
   }
 
