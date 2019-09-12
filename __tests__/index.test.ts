@@ -1,10 +1,6 @@
-import {createRepo, removeRepos, disableColor, runCommand} from '@gitsync/test';
+import {createRepo, removeRepos, runCommand} from '@gitsync/test';
 import prePush from '..';
 import sync from '@gitsync/sync-command';
-
-beforeAll(() => {
-  disableColor();
-});
 
 afterAll(() => {
   removeRepos();
