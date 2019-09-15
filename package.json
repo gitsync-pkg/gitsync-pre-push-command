@@ -40,9 +40,9 @@
     "typescript": "^3.5.3"
   },
   "ciDependencies": {
-    "@gitsync/sync": "gitsync-pkg/gitsync-sync#master",
-    "@gitsync/sync-command": "gitsync-pkg/gitsync-sync-command#master",
-    "@gitsync/test": "gitsync-pkg/gitsync-test#master",
-    "@gitsync/config": "gitsync-pkg/gitsync-config#master"
+    "@gitsync/sync": "gitsync-pkg/gitsync-sync",
+    "@gitsync/sync-command": "gitsync-pkg/gitsync-sync-command",
+    "@gitsync/test": "gitsync-pkg/gitsync-test",
+    "@gitsync/config": "gitsync-pkg/gitsync-config"
   }
 }
