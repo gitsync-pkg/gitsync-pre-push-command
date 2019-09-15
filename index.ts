@@ -41,7 +41,7 @@ command.handler = async () => {
     await repo.run(['push', '--all', '--follow-tags', 'origin']);
   }
 
-  log.warn('Done!');
+  log.info('Done!');
 }
 
 export default command;
