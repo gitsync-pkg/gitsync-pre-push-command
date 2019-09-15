@@ -1,6 +1,6 @@
 import {CommandModule} from 'yargs';
 import {Config} from '@gitsync/config';
-import git from "git-cli-wrapper";
+import git, {Git} from "git-cli-wrapper";
 import log from "@gitsync/log";
 import * as fs from 'fs';
 import theme from 'chalk-theme';
@@ -18,8 +18,8 @@ command.handler = async () => {
   const source = git('.');
   const config = new Config();
 
-  // TODO refined branch
-  const result = await source.run(['diff', '--cached', '--name-only', 'origin/' + await source.getBranch()]);
+  const branch = await getRemoteBranch(source);
+  const result = await source.run(['diff', '--cached', '--name-only', branch]);
   if (!result) {
     log.info('No changed files found.');
     return;
@@ -42,6 +42,29 @@ command.handler = async () => {
   }
 
   log.info('Done!');
+}
+
+async function getRemoteBranch(repo: Git) {
+  const branch = await repo.getBranch();
+  const result = (await repo.run(['branch', '-a', '--no-color'])) + '\n';
+  if (result.includes('remotes/origin/' + branch + '\n')) {
+    return 'origin/' + branch;
+  }
+
+  if (branch === 'master') {
+    // TODO docs
+    // 1. may be a new created repo has no commit
+    // 2. may be `git branch --set-upstream-to=origin/<branch> master`
+    throw new Error('Cannot find remote branch "origin/master"');
+  }
+
+  // Fallback to master
+  if (result.includes('remotes/origin/master\n')) {
+    return 'origin/master';
+  }
+
+  // TODO docs
+  throw new Error(`Cannot find remote branch "origin/${branch}' and "origin/master"`);
 }
 
 export default command;
