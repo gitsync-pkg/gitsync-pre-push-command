@@ -43,6 +43,7 @@
     "@gitsync/sync": "gitsync-pkg/gitsync-sync",
     "@gitsync/sync-command": "gitsync-pkg/gitsync-sync-command",
     "@gitsync/test": "gitsync-pkg/gitsync-test",
-    "@gitsync/config": "gitsync-pkg/gitsync-config"
+    "@gitsync/config": "gitsync-pkg/gitsync-config",
+    "@gitsync/log": "gitsync-pkg/gitsync-log"
   }
 }
