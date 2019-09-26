@@ -30,6 +30,8 @@ command.handler = async () => {
   const changedRepos = config.getReposByFiles(files);
 
   for (const repoConfig of changedRepos) {
+    log.info(`Push to ${theme.info(repoConfig.sourceDir)}`);
+
     let repoDir = await config.getRepoDirByRepo(repoConfig);
     if (!fs.existsSync(repoDir)) {
       log.warn(`Target repository directory "${theme.info(repoDir)}" does not exists, `
