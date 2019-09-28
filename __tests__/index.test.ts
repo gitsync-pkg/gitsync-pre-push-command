@@ -1,12 +1,14 @@
-import {catchError, createRepo, removeRepos, runCommand} from '@gitsync/test';
+import {catchError, RepoManager, runCommand} from '@gitsync/test';
 import prePush from '..';
 import sync from '@gitsync/sync-command';
 
-afterAll(() => {
-  removeRepos();
-});
+const {createRepo, removeRepos} = new RepoManager();
 
 describe('pre-push command', () => {
+  afterAll(async () => {
+    await removeRepos();
+  });
+
   test('run command', async () => {
     const sourceOrigin = await createRepo(true);
     const source = await createRepo();
