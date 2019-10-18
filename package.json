@@ -28,9 +28,10 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@gitsync/sync-command": "^0.3.0"
+    "@gitsync/commit-command": "^0.3.0"
   },
   "devDependencies": {
+    "@gitsync/sync-command": "^0.3.0",
     "@gitsync/test": "^0.3.0",
     "@types/jest": "^24.0.18",
     "coveralls": "^3.0.6",
@@ -41,6 +42,7 @@
   "ciDependencies": {
     "@gitsync/sync": "gitsync-pkg/gitsync-sync",
     "@gitsync/sync-command": "gitsync-pkg/gitsync-sync-command",
+    "@gitsync/commit-command": "gitsync-pkg/gitsync-commit-command",
     "@gitsync/test": "gitsync-pkg/gitsync-test",
     "@gitsync/config": "gitsync-pkg/gitsync-config",
     "@gitsync/log": "gitsync-pkg/gitsync-log"
