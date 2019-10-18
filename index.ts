@@ -4,6 +4,7 @@ import git, {Git} from "git-cli-wrapper";
 import log from "@gitsync/log";
 import * as fs from 'fs';
 import theme from 'chalk-theme';
+import commit from "@gitsync/commit-command";
 
 let command: CommandModule = {
   handler: () => {
@@ -30,6 +31,14 @@ command.handler = async () => {
   const changedRepos = config.getReposByFiles(files);
 
   for (const repoConfig of changedRepos) {
+    if (repoConfig.squash) {
+      log.info(`Sync commit to ${theme.info(repoConfig.sourceDir)}`);
+      await runCommand(commit, {
+        sourceDir: repoConfig.sourceDir,
+        yes: true,
+      });
+    }
+
     log.info(`Push to ${theme.info(repoConfig.sourceDir)}`);
 
     let repoDir = await config.getRepoDirByRepo(repoConfig);
@@ -44,6 +53,10 @@ command.handler = async () => {
   }
 
   log.info('Done!');
+}
+
+async function runCommand(command: CommandModule, options: any) {
+  await command.handler(options);
 }
 
 async function getRemoteBranch(repo: Git) {

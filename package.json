@@ -28,10 +28,9 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@gitsync/sync": "^0.3.0"
+    "@gitsync/sync-command": "^0.3.0"
   },
   "devDependencies": {
-    "@gitsync/sync-command": "^0.3.0",
     "@gitsync/test": "^0.3.0",
     "@types/jest": "^24.0.18",
     "coveralls": "^3.0.6",
