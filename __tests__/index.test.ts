@@ -112,6 +112,6 @@ describe('pre-push command', () => {
     expect(fs.existsSync(target.getFile('test.txt')));
 
     const result = await targetOrigin.run(['log', '--format=%s']);
-    expect(result).toContain('chore(sync): squash commit from 4b825dc642cb6eb9a060e54bf8d69288fbee4904 to');
+    expect(result).toContain('chore(sync): squash commits from 4b825dc642cb6eb9a060e54bf8d69288fbee4904 to');
   });
 });
