@@ -49,7 +49,11 @@ command.handler = async () => {
     }
 
     let repo = git(repoDir);
-    await repo.run(['push', '--all', '--follow-tags', 'origin']);
+    const result = await repo.run(['push', '--all', '--follow-tags', 'origin']);
+    log.info(result);
+
+    const tagResult = await repo.run(['push', '--tags']);
+    log.info(tagResult);
   }
 
   log.info('Done!');
