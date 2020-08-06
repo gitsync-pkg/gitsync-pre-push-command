@@ -1,6 +1,6 @@
 {
   "name": "@gitsync/pre-push-command",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "A git hook, use to push relative repositories' to remote.",
   "keywords": [
     "gitsync",
@@ -28,10 +28,10 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@gitsync/commit-command": "^0.6.0"
+    "@gitsync/commit-command": "^0.6.1"
   },
   "devDependencies": {
-    "@gitsync/sync-command": "^0.5.2",
+    "@gitsync/sync-command": "^0.5.3",
     "@gitsync/test": "^0.5.0",
     "@types/jest": "^24.0.18",
     "coveralls": "^3.0.6",
